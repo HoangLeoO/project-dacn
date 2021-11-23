@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+    <head>
+        <meta charset="UTF-8">
+        <title>Menu</title>
+        <link rel="stylesheet" type="text/css" href="CSS/styles.css">
+    </head>
+    <body>
+
+        <div th:fragment="menu">
+            <div class="menu-container">
+                <a th:href="@{/}">Trang chủ</a>
+                |
+                <a th:href="@{/list-product}">
+                    Danh sách sản phẩm
+                </a>
+                |
+                <a th:href="@{/shoppingCart}">
+                   Giỏ hàng
+                </a>
+                |
+                <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+                    <a th:href="@{/list-account}">
+                        Danh sách người dùng
+                    </a>
+                    |
+                <th:block sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')">
+                    <a th:href="@{/admin/orderList}">
+                        Danh sách đặt hàng
+                    </a>
+                    |
+                </th:block>
+                <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+                    <a th:href="@{/create-product}">
+                        Thêm sản phẩm
+                    </a>
+                    |
+                </th:block>
+            </div>
+        </div>
+    </body>
+
+</html>

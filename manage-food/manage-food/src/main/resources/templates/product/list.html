@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="/CSS/styles.css">
+
+</head>
+<body>
+<header  th:replace="~{layout/header::header}"></header>
+<div  th:replace="~{layout/menu::menu}"></div>
+
+<div class="page-title">Danh sách sản phẩm</div>
+
+
+<div class="product-preview-container" th:each="p,pStar : ${products}">
+    <ul>
+        <li><img class="product-image"
+                 src="img/product-thumb-1.jpg"  alt="" /></li>
+        <li>Mã sản phẩm: <span th:text="${p.id}"></span></li>
+        <li>Tên sản phẩm: <span th:text="${p.name}"></span></li>
+<!--        <li>Số: <span th:text="${p.quantity}"></span></li>-->
+        <li>Loại sản phẩm : <span th:text="${p.categoryProduct.categoryProduct}"></span></li>
+        <li>Giá sản phẩm: <span th:text="${p.price}"></span></li>
+<!--        <li>Price: <span th:text="${#numbers.formatDecimal(prodInfo.price,3,2,'COMMA')}"></span></li>-->
+        <li>
+            <a style="color:darkslategray;">Thêm vào giỏ hàng</a>
+<!--                    th:href="@{|/buyProduct?code=${prodInfo.code}|}"-->
+
+        </li>
+        <th:block sec:authorize="hasAuthority('ROLE_ADMIN')">
+            <li>
+                <a style="color:green;"  th:href="@{/edit-product/__${p.id}__}">Sửa sản phẩm</a> |
+                <a style="color:red;"  th:href="@{/delete-product/__${p.id}__}">Xóa sản phẩm</a>
+            </li>
+        </th:block>
+    </ul>
+</div>
+
+<!--<br/>-->
+<!--<div class="page-navigator" th:if="${paginationProducts.totalPages > 1}">-->
+<!--    <th:block th:each="page : ${paginationProducts.navigationPages}">-->
+
+<!--        <a th:href="@{|/productList?page=${page}|}" th:if="${page != -1}"-->
+<!--           class="nav-item" th:utext="${page}"></a>-->
+
+<!--        <span class="nav-item" th:if="${page == -1}"> ... </span>-->
+
+<!--    </th:block>-->
+<!--</div>-->
+
+<footer  th:replace="~{layout/fooder::fooder}"></footer>
+</body>
+</html>

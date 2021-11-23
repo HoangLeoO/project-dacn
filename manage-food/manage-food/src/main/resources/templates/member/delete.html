@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="/CSS/styles.css">
+
+
+</head>
+<body>
+<header  th:replace="~{layout/header::header}"></header>
+<div  th:replace="~{layout/menu::menu}"></div>
+<form  th:object="${account}" th:action="@{/delete-account}"
+       method="POST">
+    <h3 >Xóa người dùng</h3>
+    <table>
+        <tr>
+            <input th:field="*{id}" type="hidden" />
+        </tr>
+        <tr>
+            <td>Tên tài khoản *</td>
+            <td><input type="text" th:field="*{username}"/></td>
+        </tr>
+        <tr>
+            <td>Họ và tên *</td>
+            <td><input type="text" th:field="*{fullname}"/></td>
+        </tr>
+        <tr>
+            <td>Email *</td>
+            <td><input type="email" th:field="*{email}" /></td>
+        </tr>
+        <tr>
+            <td>Địa chỉ *</td>
+            <td><input type="text" th:field="*{address}"/></td>
+        </tr>
+        <tr>
+            <td>Số điện thoại *</td>
+            <td><input type="number" th:field="*{phone}"/></td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="Xóa" />
+                <button type="button" > <a th:href="@{/list-account}">Quay lại</button>
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+
+
+<footer  th:replace="~{layout/fooder::fooder}"></footer>
+</html>

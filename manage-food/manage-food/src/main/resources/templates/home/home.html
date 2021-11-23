@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Trang chủ</title>
+    <link rel="stylesheet" type="text/css" href="CSS/styles.css">
+
+</head>
+<body>
+<header  th:replace="~{layout/header::header}"></header>
+<div  th:replace="~{layout/menu::menu}"></div>
+
+<!--<div class="page-title">Shop bán hàng</div>-->
+<div class="demo-container">
+    <h3>Đồ án chuyên ngành</h3>
+    <ul>
+        <li>Tên sinh viên : Lê Văn Hoàng</li>
+        <li>Lớp : 19CNTT1</li>
+        <li>Giảng viên hướng dẫn : Lê Văn Mỹ</li>
+        <li>Đề tài : Phân tích thiết kế hệ thống</li>
+        <li>Quản lý bán hàng</li>
+    </ul>
+</div>
+
+<footer  th:replace="~{layout/fooder::fooder}"></footer>
+</body>
+</html>
