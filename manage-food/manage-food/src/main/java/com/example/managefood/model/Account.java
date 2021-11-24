@@ -21,7 +21,7 @@ public class Account {
 
     private String email ;
 
-    private int phone ;
+    private String phone ;
 
     @JsonIgnore
     @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
@@ -82,11 +82,11 @@ public class Account {
         this.email = email;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 

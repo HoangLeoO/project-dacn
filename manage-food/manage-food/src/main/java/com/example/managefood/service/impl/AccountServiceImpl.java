@@ -39,12 +39,12 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public void createAccount(String address, String email, String fullname, String password, int phone, String username) {
+    public void createAccount(String address, String email, String fullname, String password, String phone, String username) {
         accountRepository.createAccount(address,email,fullname,password,phone,username);
     }
 
     @Override
-    public void updateAccount(String address, String email, String fullname, String password, int phone, String username, long id) {
+    public void updateAccount(String address, String email, String fullname, String password, String phone, String username, long id) {
         accountRepository.updateAccount(address,email,fullname,password,phone,username,id);
     }
 

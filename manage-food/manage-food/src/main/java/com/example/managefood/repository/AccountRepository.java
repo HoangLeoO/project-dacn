@@ -42,12 +42,12 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
     @Transactional
     @Modifying
     @Query(value = "INSERT INTO `manage_food`.`account` (`address`, `email`, `fullname`, `password`, `phone`, `username`) VALUES (?1,?2, ?3,?4,?5,?6)",nativeQuery = true)
-    void createAccount(String address,String email , String fullname,String password,int phone , String username);
+    void createAccount(String address,String email , String fullname,String password,String phone , String username);
 
     @Transactional
     @Modifying
     @Query(value = "UPDATE `manage_food`.`account` SET `address` = ?1, `email` = ?2, `fullname` = ?3, `password` = ?4, `phone` = ?5, `username` =?6 WHERE (`id` = ?7)",nativeQuery = true)
-    void updateAccount(String address,String email , String fullname,String password,int phone , String username,long id);
+    void updateAccount(String address,String email , String fullname,String password,String phone , String username,long id);
 
 
     //Xóa account theo id

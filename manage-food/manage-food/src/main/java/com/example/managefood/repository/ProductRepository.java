@@ -1,6 +1,5 @@
 package com.example.managefood.repository;
 
-import com.example.managefood.model.Account;
 import com.example.managefood.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
