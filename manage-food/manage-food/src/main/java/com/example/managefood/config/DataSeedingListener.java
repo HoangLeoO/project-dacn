@@ -69,5 +69,8 @@ public class DataSeedingListener implements ApplicationListener<ContextRefreshed
             userRepository.createAccountRole(accountDTO.getId(),role.getId());
         }
 
+        // Them loai hang
+
+
     }
 }
