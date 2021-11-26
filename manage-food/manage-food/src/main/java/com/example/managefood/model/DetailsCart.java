@@ -8,9 +8,13 @@ public class DetailsCart {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id ;
 
+    private long quantity;
+
+    private long total;
+
     @ManyToOne
-    @JoinColumn(name = "cart_id", referencedColumnName = "id")
-    private Cart cart;
+    @JoinColumn(name = "account_id", referencedColumnName = "id")
+    private Account account;
 
     @ManyToOne
     @JoinColumn(name = "product_id", referencedColumnName = "id")
@@ -27,12 +31,28 @@ public class DetailsCart {
         this.id = id;
     }
 
-    public Cart getCart() {
-        return cart;
+    public long getQuantity() {
+        return quantity;
     }
 
-    public void setCart(Cart cart) {
-        this.cart = cart;
+    public void setQuantity(long quantity) {
+        this.quantity = quantity;
+    }
+
+    public long getTotal() {
+        return total;
+    }
+
+    public void setTotal(long total) {
+        this.total = total;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
     }
 
     public Product getProduct() {

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="/CSS/styles.css">
+
+</head>
+<body>
+<header th:replace="~{layout/header::header}"></header>
+<div th:replace="~{layout/menu::menu}"></div>
+
+<div class="page-title">Danh sách sản phẩm</div>
+
+
+<div class="product-preview-container" th:each="d ,stt: ${details}">
+    <form>
+        <ul>
+            <li>Số thứ tự: <span th:text="${stt.count}"></span></li>
+            <li>Tên sản phẩm: <span th:text="${d.product.name}"></span></li>
+            <li>Giá tiền sản phẩm: <span th:text="${d.product.price}"></span></li>
+            <li>Số lương :<input type="number" th:value="${d.quantity}" min="1" max="99"/>
+            <li>Giá tiền sản phẩm: <span th:text="${d.product.price}"></span></li>
+
+            <li>
+                <a style="color:green;" >Cập nhật </a> |
+                <a style="color:red;"  >Xóa sản phẩm</a>
+            </li>
+        </ul>
+    </form>
+
+</div>
+<div>
+    Tổng tiền : <p > <th:block th:text="${tongtien}"></th:block> đồng</p>
+</div>
+<a th:href="@{/payment-cart}">
+    Thanh toán
+</a>
+<footer th:replace="~{layout/fooder::fooder}"></footer>
+</body>
+</html>

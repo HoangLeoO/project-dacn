@@ -12,18 +12,15 @@ public class ProductDTO {
 
     private String description ;
 
-    private long quantity ;
-
     private long categoryProduct;
 
 
-    public ProductDTO(long id, String name, long price, String imageUrl, String description, long quantity, long categoryProduct) {
+    public ProductDTO(long id, String name, long price, String imageUrl, String description, long categoryProduct) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.imageUrl = imageUrl;
         this.description = description;
-        this.quantity = quantity;
         this.categoryProduct = categoryProduct;
     }
 
@@ -69,14 +66,6 @@ public class ProductDTO {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public long getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(long quantity) {
-        this.quantity = quantity;
     }
 
     public long getCategoryProduct() {

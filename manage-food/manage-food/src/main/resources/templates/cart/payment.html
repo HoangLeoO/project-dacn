@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="/CSS/styles.css">
+
+</head>
+<body>
+<header th:replace="~{layout/header::header}"></header>
+<div th:replace="~{layout/menu::menu}"></div>
+
+<div class="page-title">Hóa đơn thanh toán</div>
+<div>
+    <p>Tên người mua :
+        <th:block th:text="${account.fullname}"></th:block>
+    </p>
+</div>
+<div>
+    <p>Địa chỉ :
+        <th:block th:text="${account.address}"></th:block>
+    </p>
+</div>
+<div>
+    <p>Số điện thoại :
+        <th:block th:text="${account.phone}"></th:block>
+    </p>
+</div>
+<div>
+    <p>Địa chỉ email :
+        <th:block th:text="${account.email}"></th:block>
+    </p>
+</div>
+
+<div>
+    Tổng tiền thanh toán :
+    <p>
+        <th:block th:text="${tongtien}"></th:block>
+        $
+    </p>
+</div>
+
+<div>
+    <a th:href="@{/}"><p>Giao hàng</p></a>
+</div>
+<footer th:replace="~{layout/fooder::fooder}"></footer>
+</body>
+</html>

@@ -35,13 +35,13 @@ public class ProductServiceImpl  implements ProductService {
     @Override
     public void createProduct(ProductDTO productDTO) {
         productRepository.createProduct(productDTO.getName(),productDTO.getImageUrl(),productDTO.getPrice(),
-                productDTO.getDescription(),productDTO.getQuantity(),productDTO.getCategoryProduct());
+                productDTO.getDescription(),productDTO.getCategoryProduct());
     }
 
     @Override
     public void updateProduct(ProductDTO productDTO) {
         productRepository.updateProduct(productDTO.getDescription(), productDTO.getImageUrl(), productDTO.getName(), productDTO.getPrice()
-                , productDTO.getQuantity(), productDTO.getCategoryProduct(), productDTO.getId());
+              , productDTO.getCategoryProduct(), productDTO.getId());
 
     }
 

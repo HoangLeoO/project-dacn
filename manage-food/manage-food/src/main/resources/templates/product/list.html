@@ -19,10 +19,8 @@
                  src="img/product-thumb-1.jpg"  alt="" /></li>
         <li>Mã sản phẩm: <span th:text="${p.id}"></span></li>
         <li>Tên sản phẩm: <span th:text="${p.name}"></span></li>
-<!--        <li>Số: <span th:text="${p.quantity}"></span></li>-->
-        <li>Loại sản phẩm : <span th:text="${p.categoryProduct.categoryProduct}"></span></li>
+\        <li>Loại sản phẩm : <span th:text="${p.categoryProduct.categoryProduct}"></span></li>
         <li>Giá sản phẩm: <span th:text="${p.price}"></span></li>
-<!--        <li>Price: <span th:text="${#numbers.formatDecimal(prodInfo.price,3,2,'COMMA')}"></span></li>-->
         <li>
             <a style="color:darkslategray;">Thêm vào giỏ hàng</a>
 <!--                    th:href="@{|/buyProduct?code=${prodInfo.code}|}"-->

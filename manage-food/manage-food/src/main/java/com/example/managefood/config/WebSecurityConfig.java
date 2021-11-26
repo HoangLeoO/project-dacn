@@ -42,12 +42,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity.csrf().disable();
 
         //các trang không yêu cầu login
-        httpSecurity.authorizeRequests().antMatchers("/", "/login");
+        httpSecurity.authorizeRequests().antMatchers("/", "/login","/list-product");
 
         //trang employee yêu cầu phải login với vai trò ROLE_USER, ROLE_ADMIN
         //Nếu chưa login , nó sẽ redirect tới trang /login , dùng hasAnyRole để cho phép ai có quyền vào
         // ROLE user và admin lấy từ database ra cái mà mình chèn vô ở bước 1
-        httpSecurity.authorizeRequests().antMatchers("/list-product","/accountInfo").access("hasAnyRole('ROLE_MEMBER', 'ROLE_ADMIN')");
+        httpSecurity.authorizeRequests().antMatchers("/accountInfo","/detail-cart").access("hasAnyRole('ROLE_MEMBER', 'ROLE_ADMIN')");
 
 
 //        Trang chỉ dành cho ADMIN

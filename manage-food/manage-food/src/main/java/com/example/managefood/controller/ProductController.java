@@ -48,7 +48,7 @@ public class ProductController {
 
     @GetMapping("/create-product")
     public ModelAndView FromCreateProduct(){
-        ModelAndView modelAndView = new ModelAndView("/product/create","productFrom",new ProductDTO());
+        ModelAndView modelAndView = new ModelAndView("/product/create","productFrom", new ProductDTO());
         return modelAndView;
     }
 

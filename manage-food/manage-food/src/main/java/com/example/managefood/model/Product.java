@@ -17,8 +17,6 @@ public class Product {
 
     private String description ;
 
-    private long quantity ;
-
     private String imageUrl;
 
     @JsonIgnore
@@ -26,6 +24,7 @@ public class Product {
     @JoinColumn(name = "categoryProductId", referencedColumnName = "id")
     private CategoryProduct categoryProduct;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<DetailsCart> detailsCarts;
 
@@ -64,12 +63,12 @@ public class Product {
         this.description = description;
     }
 
-    public long getQuantity() {
-        return quantity;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public void setQuantity(long quantity) {
-        this.quantity = quantity;
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public CategoryProduct getCategoryProduct() {
@@ -87,13 +86,4 @@ public class Product {
     public void setDetailsCarts(List<DetailsCart> detailsCarts) {
         this.detailsCarts = detailsCarts;
     }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
 }

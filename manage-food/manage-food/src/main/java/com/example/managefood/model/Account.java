@@ -29,7 +29,7 @@ public class Account {
 
     @JsonIgnore
     @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
-    private List<Cart> carts;
+    private List<DetailsCart> detailsCarts;
 
     public Account() {
     }
@@ -98,12 +98,11 @@ public class Account {
         this.accountRoles = accountRoles;
     }
 
-    public List<Cart> getCarts() {
-        return carts;
+    public List<DetailsCart> getDetailsCarts() {
+        return detailsCarts;
     }
 
-    public void setCarts(List<Cart> carts) {
-        this.carts = carts;
+    public void setDetailsCarts(List<DetailsCart> detailsCarts) {
+        this.detailsCarts = detailsCarts;
     }
-
 }
