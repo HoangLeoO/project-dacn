@@ -20,4 +20,7 @@ public interface ProductService {
 
     void deleteByIdProduct(Long id);
 
+    void deleteByIdCartProduct(Long product_id);
+
+
 }

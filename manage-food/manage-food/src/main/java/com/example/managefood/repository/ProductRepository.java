@@ -38,4 +38,9 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
     @Modifying
     @Query(value = "DELETE FROM `manage_food`.`product` WHERE (`id` = ?1);", nativeQuery = true)
     void deleteByIdProduct(Long id);
+
+    @Transactional
+    @Modifying
+    @Query(value = "DELETE FROM `manage_food`.`details_cart` WHERE  details_cart.product_id = ?1;", nativeQuery = true)
+    void deleteByIdCartProduct(Long product_id);
 }

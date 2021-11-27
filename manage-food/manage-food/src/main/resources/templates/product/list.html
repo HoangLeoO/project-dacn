@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -7,8 +8,8 @@
 
 </head>
 <body>
-<header  th:replace="~{layout/header::header}"></header>
-<div  th:replace="~{layout/menu::menu}"></div>
+<header th:replace="~{layout/header::header}"></header>
+<div th:replace="~{layout/menu::menu}"></div>
 
 <div class="page-title">Danh sách sản phẩm</div>
 
@@ -16,20 +17,19 @@
 <div class="product-preview-container" th:each="p,pStar : ${products}">
     <ul>
         <li><img class="product-image"
-                 src="img/product-thumb-1.jpg"  alt="" /></li>
+                 src="img/product-thumb-1.jpg" alt=""/></li>
         <li>Mã sản phẩm: <span th:text="${p.id}"></span></li>
         <li>Tên sản phẩm: <span th:text="${p.name}"></span></li>
-\        <li>Loại sản phẩm : <span th:text="${p.categoryProduct.categoryProduct}"></span></li>
+        <li>Loại sản phẩm : <span th:text="${p.categoryProduct.categoryProduct}"></span></li>
         <li>Giá sản phẩm: <span th:text="${p.price}"></span></li>
         <li>
-            <a style="color:darkslategray;">Thêm vào giỏ hàng</a>
-<!--                    th:href="@{|/buyProduct?code=${prodInfo.code}|}"-->
+            <a style="color:darkslategray;" th:href="@{/add-product/__${p.id}__}">Thêm vào giỏ hàng</a>
 
         </li>
         <th:block sec:authorize="hasAuthority('ROLE_ADMIN')">
             <li>
-                <a style="color:green;"  th:href="@{/edit-product/__${p.id}__}">Sửa sản phẩm</a> |
-                <a style="color:red;"  th:href="@{/delete-product/__${p.id}__}">Xóa sản phẩm</a>
+                <a style="color:green;" th:href="@{/edit-product/__${p.id}__}">Sửa sản phẩm</a> |
+                <a style="color:red;" th:href="@{/delete-product/__${p.id}__}">Xóa sản phẩm</a>
             </li>
         </th:block>
     </ul>
@@ -47,6 +47,6 @@
 <!--    </th:block>-->
 <!--</div>-->
 
-<footer  th:replace="~{layout/fooder::fooder}"></footer>
+<footer th:replace="~{layout/fooder::fooder}"></footer>
 </body>
 </html>

@@ -86,6 +86,7 @@ public class AccountController {
                 "Xóa thành công " + account.getFullname());
         accountRepository.deleteByIdAccountRole(account.getId());
         accountRepository.deleteByIdAccount(account.getId());
+        accountRepository.deleteByIdCartProduct(account.getId());
         Account account1 = accountRepository.findUserByUsername(account.getUsername());
 
         ModelAndView modelAndView = new ModelAndView("redirect:/list-account");
@@ -100,6 +101,7 @@ public class AccountController {
         System.out.println(userDetails.getPassword());
         System.out.println(userDetails.getUsername());
         System.out.println(userDetails.isEnabled());
+
         Account account = accountRepository.findUserByUsername(userDetails.getUsername());
         model.addAttribute("userDetails", account);
         return "/home/accountInfor";

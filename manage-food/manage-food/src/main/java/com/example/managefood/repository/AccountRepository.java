@@ -62,4 +62,9 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
     @Modifying
     @Query(value = "DELETE FROM `manage_food`.`account_role` WHERE account_role.account_id = ?1", nativeQuery = true)
     void deleteByIdAccountRole(Long id);
+
+    @Transactional
+    @Modifying
+    @Query(value = "DELETE FROM `manage_food`.`details_cart` WHERE  details_cart.account_id = ?1", nativeQuery = true)
+    void deleteByIdCartProduct(Long account_id);
 }

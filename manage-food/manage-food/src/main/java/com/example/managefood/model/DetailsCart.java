@@ -10,7 +10,6 @@ public class DetailsCart {
 
     private long quantity;
 
-    private long total;
 
     @ManyToOne
     @JoinColumn(name = "account_id", referencedColumnName = "id")
@@ -39,13 +38,7 @@ public class DetailsCart {
         this.quantity = quantity;
     }
 
-    public long getTotal() {
-        return total;
-    }
 
-    public void setTotal(long total) {
-        this.total = total;
-    }
 
     public Account getAccount() {
         return account;
