@@ -13,11 +13,14 @@
 
 <div class="page-title">Danh sách sản phẩm</div>
 
+<form th:action="@{/list-product}" method="get">
+    <input type="text" name="key_search">
+    <input type="submit" value="Search">
+</form>
 
 <div class="product-preview-container" th:each="p,pStar : ${products}">
     <ul>
-        <li><img class="product-image"
-                 src="img/product-thumb-1.jpg" alt=""/></li>
+        <li><img class="product-image" th:src="@{'/CSS/image/' + ${p.imageUrl}}" /></li>
         <li>Mã sản phẩm: <span th:text="${p.id}"></span></li>
         <li>Tên sản phẩm: <span th:text="${p.name}"></span></li>
         <li>Loại sản phẩm : <span th:text="${p.categoryProduct.categoryProduct}"></span></li>
@@ -35,17 +38,13 @@
     </ul>
 </div>
 
-<!--<br/>-->
-<!--<div class="page-navigator" th:if="${paginationProducts.totalPages > 1}">-->
-<!--    <th:block th:each="page : ${paginationProducts.navigationPages}">-->
-
-<!--        <a th:href="@{|/productList?page=${page}|}" th:if="${page != -1}"-->
-<!--           class="nav-item" th:utext="${page}"></a>-->
-
-<!--        <span class="nav-item" th:if="${page == -1}"> ... </span>-->
-
-<!--    </th:block>-->
-<!--</div>-->
+<div>
+    <a th:href="@{'/list-product'(page=${products.number - 1}, key_search=${key_search})}"
+       th:if="${products.hasPrevious()}">Previous</a>
+    <span th:text="${products.number + 1}"></span>/<span th:text="${products.totalPages}"></span>
+    <a th:href="@{'/list-product'(page=${products.number + 1}, key_search=${key_search})}"
+       th:if="${products.hasNext()}">Next</a>
+</div>
 
 <footer th:replace="~{layout/fooder::fooder}"></footer>
 </body>

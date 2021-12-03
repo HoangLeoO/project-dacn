@@ -32,6 +32,6 @@ public interface DetailsCartRepository extends JpaRepository<DetailsCart,Long> {
 
     @Transactional
     @Modifying
-    @Query(value = "UPDATE `manage_food`.`details_cart` SET `quantity` = ?1, `product_id` = ?2 WHERE (`id` = '7')",nativeQuery = true)
+    @Query(value = "UPDATE `manage_food`.`details_cart` SET `quantity` = ?1, `product_id` = ?2 WHERE (`id` = ?3)",nativeQuery = true)
     void updateCart(long quantity,long product_id,long id);
 }

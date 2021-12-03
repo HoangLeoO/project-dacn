@@ -25,12 +25,12 @@
                         Danh sách người dùng
                     </a>
                     |
-                    <th:block sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')">
-                        <a th:href="@{/admin/orderList}">
-                            Danh sách đặt hàng
-                        </a>
-                        |
-                    </th:block>
+<!--                    <th:block sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')">-->
+<!--                        <a th:href="@{/admin/orderList}">-->
+<!--                            Danh sách đặt hàng-->
+<!--                        </a>-->
+<!--                        |-->
+<!--                    </th:block>-->
                     <th:block sec:authorize="hasRole('ROLE_ADMIN')">
                         <a th:href="@{/create-product}">
                             Thêm sản phẩm

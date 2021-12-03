@@ -1,20 +1,31 @@
 package com.example.managefood.controller;
 
 import com.example.managefood.model.CategoryProduct;
+import com.example.managefood.model.DetailsCart;
 import com.example.managefood.model.Product;
 import com.example.managefood.model.dto.ProductDTO;
+import com.example.managefood.repository.ProductRepository;
 import com.example.managefood.service.CategoryProductService;
 import com.example.managefood.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class ProductController {
@@ -23,6 +34,9 @@ public class ProductController {
 
     @Autowired
     private CategoryProductService categoryProductService;
+
+    @Autowired
+    private ProductRepository productRepository;
 
     @ModelAttribute("categoryProducts")
     public Iterable<CategoryProduct> categoryProducts() {
@@ -39,10 +53,13 @@ public class ProductController {
 
 
     @GetMapping("/list-product")
-    public ModelAndView getAllProduct() {
-        List<Product> products = productService.getAllProduct();
-        ModelAndView modelAndView = new ModelAndView("/product/list", "products", products);
-        return modelAndView;
+    public ModelAndView getHome(@RequestParam Optional<String> key_search, @PageableDefault(value = 2) Pageable pageable, Model model){
+        if(!key_search.isPresent()){
+            return new ModelAndView("/product/list", "products", productRepository.findAllByProduct(pageable));
+        }else {
+            model.addAttribute("key_search", key_search.get());
+            return new ModelAndView("/product/list", "products", productRepository.findByNameProduct(key_search.get(), pageable));
+        }
     }
 
 
@@ -54,7 +71,16 @@ public class ProductController {
 
 
     @PostMapping("/create-product")
-    public ModelAndView create(ProductDTO productDTO) {
+    public ModelAndView create(ProductDTO productDTO,@RequestParam("fileImg") MultipartFile photo) {
+        Path path = Paths.get("src/main/resources/static/CSS/image/");
+        System.out.println(photo.getOriginalFilename());
+        try {
+            InputStream inputStream = photo.getInputStream();
+            Files.copy(inputStream, path.resolve(photo.getOriginalFilename()), StandardCopyOption.REPLACE_EXISTING);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        productDTO.setImageUrl(photo.getOriginalFilename());
         System.out.println("Creating product " + productDTO.getName());
         ModelAndView modelAndView = new ModelAndView("redirect:/list-product");
 
@@ -106,8 +132,11 @@ public class ProductController {
     @PostMapping("/delete-product")
     public ModelAndView delete(@ModelAttribute("product") Product product) {
         System.out.println(
-                "Xóa thành công " + product.getName());
-        productService.deleteByIdCartProduct(product.getId());
+                "Xóa thành công " + product.getId());
+//        if(!productRepository.getCartById(product.getId()).isEmpty()){
+//            productRepository.deleteByIdCartByProduct(product.getId());
+//        }
+        productRepository.deleteByIdCartIdProduct(product.getId());
         productService.deleteByIdProduct(product.getId());
         ModelAndView modelAndView = new ModelAndView("redirect:/list-product");
         return modelAndView;

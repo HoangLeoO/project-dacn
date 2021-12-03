@@ -1,12 +1,15 @@
 package com.example.managefood.service.impl;
 
 
+import com.example.managefood.model.DetailsCart;
 import com.example.managefood.model.Product;
 
 import com.example.managefood.model.dto.ProductDTO;
 import com.example.managefood.repository.ProductRepository;
 import com.example.managefood.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -51,8 +54,23 @@ public class ProductServiceImpl  implements ProductService {
     }
 
     @Override
-    public void deleteByIdCartProduct(Long product_id) {
+    public void deleteByIdCartProduct(long product_id) {
         productRepository.deleteByIdCartProduct(product_id);
+    }
+
+    @Override
+    public List<DetailsCart>   getCartById(long id) {
+        return productRepository.getCartById(id);
+    }
+
+    @Override
+    public Page<Product> findAllByProduct(Pageable pageable) {
+        return findAllByProduct(pageable);
+    }
+
+    @Override
+    public Page<Product> findByNameProduct(String name, Pageable pageable) {
+        return findByNameProduct(name,pageable);
     }
 
 

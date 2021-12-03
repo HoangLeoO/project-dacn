@@ -64,8 +64,8 @@
         </tr>
 
         <tr>
-            <td>Tải ảnh</td>
-            <td><input type="file" th:field="*{imageUrl}" /></td>
+
+            <td><input th:field="*{imageUrl}" type="hidden" /></td>
             <td> </td>
         </tr>
         <form  th:object="${quantity}" th:action="@{/add-product}"

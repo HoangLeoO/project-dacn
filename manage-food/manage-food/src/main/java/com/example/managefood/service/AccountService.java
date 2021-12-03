@@ -6,8 +6,8 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface AccountService {
-
-    List<Account> getAllAccount();
+//
+//    List<Account> getAllAccount();
 
     Account findUserByUsername( String username);
 

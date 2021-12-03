@@ -115,4 +115,12 @@ public class CartController {
         ModelAndView modelAndView = new ModelAndView("redirect:/detail-cart");
         return modelAndView;
     }
+
+    @GetMapping("/delete-quantity/{id}")
+    public ModelAndView showDelete(@PathVariable long id) {
+        System.out.println(id);
+        productService.deleteByIdCartProduct(id);
+        ModelAndView modelAndView = new ModelAndView("redirect:/detail-cart");
+        return modelAndView;
+    }
 }

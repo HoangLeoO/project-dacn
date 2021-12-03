@@ -17,15 +17,16 @@
 <div class="product-preview-container" th:each="d ,stt: ${details}">
     <form>
         <ul>
+            <li><img class="product-image" th:src="@{'/CSS/image/' + ${d.product.imageUrl}}" /></li>
             <li>Số thứ tự: <span th:text="${stt.count}"></span></li>
             <li>Tên sản phẩm: <span th:text="${d.product.name}"></span></li>
             <li>Giá tiền sản phẩm: <span th:text="${d.product.price}"></span></li>
-            <li>Số lương :<input type="number" th:value="${d.quantity}" min="1" max="99"/>
+            <li>Số lương : <span th:text="${d.quantity}"></span></li>
             <li>Giá tiền sản phẩm: <span th:text="${d.product.price}"></span></li>
 
             <li>
                 <a style="color:green;"  th:href="@{/update-quantity/__${d.id}__}">Cập nhật </a> |
-                <a style="color:red;"  >Xóa sản phẩm</a>
+                <a style="color:red;"  th:href="@{/delete-quantity/__${d.id}__}" >Xóa sản phẩm</a>
             </li>
         </ul>
     </form>

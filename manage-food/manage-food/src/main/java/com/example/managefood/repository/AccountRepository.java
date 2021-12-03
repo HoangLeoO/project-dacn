@@ -8,15 +8,20 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+
 import java.util.List;
 
 @Repository
 public interface AccountRepository extends JpaRepository<Account, Long> {
 
 
-    @Query(value = "select * from `account` inner join account_role on account.id = account_role.account_id \n" +
+    @Query(value = "select * from `account` inner join account_role on account.id = account_role.account_id " +
             "where account_role.role_id = 2 ",nativeQuery = true)
     List<Account>  getAllAccount();
+
+
+    @Query(value = "SELECT * FROM manage_food.account  where account.fullname like %?1% ",nativeQuery = true)
+    Account findByNameAccount(String fullname);
 
     @Query(value = "SELECT * from account where username=:username", nativeQuery = true)
     Account findUserByUsername(@Param("username") String username);
@@ -62,6 +67,7 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
     @Modifying
     @Query(value = "DELETE FROM `manage_food`.`account_role` WHERE account_role.account_id = ?1", nativeQuery = true)
     void deleteByIdAccountRole(Long id);
+
 
     @Transactional
     @Modifying

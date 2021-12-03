@@ -12,6 +12,12 @@
 <div  th:replace="~{layout/menu::menu}"></div>
 
 <div class="page-title"><h3>Danh sách người dùng</h3></div>
+
+<form th:action="@{/list-account}" method="get">
+    <input type="text" name="key_search">
+    <input type="submit" value="Search">
+</form>
+
 <table border="1" style="width:100%">
     <tr>
         <th>STT</th>
@@ -33,15 +39,6 @@
         <td>    <a style="color:red;"  th:href="@{/delete-account/__${a.id}__}">Xóa </a></td>
     </tr>
 </table>
-
-<!--<div class="page-navigator" th:if="${paginationResult.totalPages > 1}" >-->
-<!--    <th:block th:each="page: ${paginationResult.navigationPages}">-->
-<!--        <a th:if="${page != -1}" class="nav-item"-->
-<!--           th:href="@{|/admin/orderList?page=${page}|}" th:utext="${page}"></a>-->
-
-<!--        <span th:if="${page == -1}" class="nav-item"> ... </span>-->
-<!--    </th:block>-->
-<!--</div>-->
 
 <footer  th:replace="~{layout/fooder::fooder}"></footer>
 

@@ -7,6 +7,8 @@ import com.example.managefood.model.dto.ProductDTO;
 import com.example.managefood.repository.AccountRepository;
 import com.example.managefood.util.EncrypPasswordUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class AccountController {
@@ -26,12 +29,22 @@ public class AccountController {
     private AccountRepository accountRepository ;
 
 
+//    @GetMapping("/list-account")
+//    public ModelAndView getAllAccount() {
+//        List<Account> accounts = accountRepository.getAllAccount();
+//        ModelAndView modelAndView = new ModelAndView("/member/list","account",accounts);
+//        return modelAndView;
+//    }
+
     @GetMapping("/list-account")
-    public ModelAndView getAllProduct() {
-        List<Account> accounts = accountRepository.getAllAccount();
-        ModelAndView modelAndView = new ModelAndView("/member/list","account",accounts);
-        return modelAndView;
+    public ModelAndView getHome(@RequestParam Optional<String> key_search){
+        if(!key_search.isPresent()){
+            return new ModelAndView("/member/list", "account", accountRepository.getAllAccount());
+        }else {
+            return new ModelAndView("/member/list", "account", accountRepository.findByNameAccount(key_search.get()));
+        }
     }
+
 
 
     @GetMapping("account/{id}")
@@ -85,8 +98,8 @@ public class AccountController {
         System.out.println(
                 "Xóa thành công " + account.getFullname());
         accountRepository.deleteByIdAccountRole(account.getId());
-        accountRepository.deleteByIdAccount(account.getId());
         accountRepository.deleteByIdCartProduct(account.getId());
+        accountRepository.deleteByIdAccount(account.getId());
         Account account1 = accountRepository.findUserByUsername(account.getUsername());
 
         ModelAndView modelAndView = new ModelAndView("redirect:/list-account");
